@@ -113,9 +113,9 @@ bash quickstart.sh -n -t all $VIRTHOST
 ``` bash
 ssh -F $HOME/.quickstart/ssh.config.ansible \
   -D 1080 undercloud
-# Configurar un proxy
+# Configurar un proxy en firefox
 # Ver más indicaciones en:
-#
+# http://docs.openstack.org/developer/tripleo-quickstart/accessing-overcloud.html#using-firefox
 ```
 La URL serian http://\<overcloud\_public\_vip\>. Esta IP se puede buscar con:
 ``` bash
