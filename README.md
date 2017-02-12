@@ -116,7 +116,7 @@ Once in the container you can run tripleo-quickstart.
 bash quickstart.sh -n -t all $VIRTHOST
 ```
 ### Accesing overcloud Dashboard
-Once the script finish succesfully, you can access Dashboar from your workstation.
+When the script finishes succesfully, you can access Dashboard from your workstation.
 ``` bash
 ssh -F $HOME/.quickstart/ssh.config.ansible \
   -D 1080 undercloud
