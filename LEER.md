@@ -57,7 +57,7 @@ export WORKDIR=${WORKDIR:-"$HOME/tripleo"}                      # Directorio de 
 export SEED=${SEED:-"${WORKDIR}/tripleo-semilla"}               # Directorio de este repo
 export OPT_WORKDIR=${OPT_WORKDIR:-"${WORKDIR}/.quickstart"}     # Directorio de despliegue de oooq
 export OOOQ_DIR=${OOOQ_DIR:-"${WORKDIR}/tripleo-quickstart"}    # Directorio del repo de oooq
-export SSH_KEYS=${SSH_KEY:-"${HOME}/.ssh"}                      # Llave ssh para autenticación sin contraseña
+export SSH_KEYS=${SSH_KEYS:-/home/$USER/.ssh}                   # Llave ssh para autenticación sin contraseña
 _EOF
 mv oooq.env "$WORKDIR"
 cd "$WORKDIR"
@@ -89,15 +89,19 @@ ssh root@$VIRTHOST uname -a
 ```
 ## Construir el contenedor
 ``` bash
-docker build -t tripleo/semilla -f "${WORKDIR}/tripleo-semilla/Dockerfile" .
+docker build -t tripleo/semilla \
+    --build-arg ssh_key="${SSH_KEYS}" \
+    --build-arg uid=$UID \
+    --build-arg user=$USER \
+    -f "${WORKDIR}/tripleo-semilla/Dockerfile" .
 ```
 ## Correr el contenedor
 ``` bash
 docker run --net=host -it  \
-    -v "$WORKDIR/.quickstart":/root/.quickstart \
-    -v "$SSH_KEYS":/root/.ssh \
-    -v "$WORKDIR/tripleo-quickstart":/root/tripleo-quickstart \
-    -e USER=root -e VIRTHOST=$VIRTHOST \
+    -v "$WORKDIR/.quickstart":/home/$USER/.quickstart \
+    -v "$SSH_KEYS":/home/$USER/.ssh \
+    -v "$WORKDIR/tripleo-quickstart":/home/$USER/tripleo-quickstart \
+    -e USER=$USER -e VIRTHOST=$VIRTHOST \
     tripleo/semilla
 ```
 ## Dentro del contenedor
