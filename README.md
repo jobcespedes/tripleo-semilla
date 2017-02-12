@@ -1,6 +1,3 @@
-# tripleo-semilla
-Docker container for tripleo-quickstart.
-
 # Container for Quickstart TripleO
 Docker container for tripleo-quickstart. It is intended to be a seed to generate an isolated workspace
 
@@ -125,6 +122,9 @@ ssh -F $HOME/.quickstart/ssh.config.ansible \
 ```
 Dashboard URL would be http://\<overcloud\_public\_vip\>. This IP could be find with:
 ``` bash
+# IP
 grep overcloud_public_vip tripleo-quickstart/roles/common/defaults/main.yml
+# USER AND PASSWORD
+egrep "USER|PASSWORD" .quickstart/overcloudrc
 ```
 # Pura vida

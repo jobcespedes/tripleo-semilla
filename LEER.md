@@ -123,5 +123,8 @@ ssh -F $HOME/.quickstart/ssh.config.ansible \
 ```
 La URL serian http://\<overcloud\_public\_vip\>. Esta IP se puede buscar con:
 ``` bash
+# IP
 grep overcloud_public_vip tripleo-quickstart/roles/common/defaults/main.yml
+# Usuario y contraseña
+egrep "USER|PASSWORD" .quickstart/overcloudrc
 ```
