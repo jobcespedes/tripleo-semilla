@@ -12,12 +12,12 @@ Based on docs from [Docker](https://docs.docker.com/engine/installation/linux/ub
 sudo apt-get update
 
 # Extra packages
-sudo apt-get install curl \
+sudo apt-get install -y curl \
     linux-image-extra-$(uname -r) \
     linux-image-extra-virtual
 
 # Repo config
-sudo apt-get install apt-transport-https \
+sudo apt-get install -y apt-transport-https \
                        software-properties-common \
                        ca-certificates
 
@@ -28,8 +28,8 @@ curl -fsSL https://yum.dockerproject.org/gpg | sudo apt-key add -
 $(apt-key fingerprint 58118E89F3A912897C070ADBF76221572C526091 | wc -l | grep -qv 0) && echo Verificado || echo "Error de verificacion"
 
 # Install stable repo
-sudo apt-get install software-properties-common
-sudo add-apt-repository \
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository -y \
        "deb https://apt.dockerproject.org/repo/ \
        ubuntu-$(lsb_release -cs) \
        main"
